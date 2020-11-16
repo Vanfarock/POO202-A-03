@@ -6,7 +6,7 @@ Implementação do jogo **Keep talking and nobody explodes**, onde os desafios d
 * Gustavo Henrique Kistner
 * Evandro Geliar Michels
 
-#### Marcos
+#### Marcos:
 1. [Modelo das classes / Lista dos conhecimentos a serem desenvolvidos / Enigmas prévios](#marco-1)
 2. [Protótipos de interface e interação com a bomba / Enigmas completos](#marco-2)
 3. [Protótipos de interface / Programação dos enigmas](#marco-3)
