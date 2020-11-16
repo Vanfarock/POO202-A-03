@@ -20,10 +20,8 @@ Implementação do jogo **Keep talking and nobody explodes**, onde os desafios d
   2. Biblioteca gráfica 2D
 
 * Enigmas prévios:
-
-Raciocínio lógico: Iremos desenvolver uma questão onde o usuário deverá resolver o enigma com base em interruptores, e no final compararemos o progresso alcançado pelo usuário com as respostas da questão.
-
-Lógica proposicional: Iremos desenvolver uma questão onde o usuário deverá resolver o enigma com pequenas pequenas respostas em sequência, onde no final irá formar a resposta para a questão.
+  * Raciocínio lógico: Iremos desenvolver uma questão onde o usuário deverá resolver o enigma com base em interruptores, e no final compararemos o progresso alcançado pelo usuário com as respostas da questão.
+  * Lógica proposicional: Iremos desenvolver uma questão onde o usuário deverá resolver o enigma com pequenas pequenas respostas em sequência, onde no final irá formar a resposta para a questão.
 
 # Marco 2
 **TODO**
