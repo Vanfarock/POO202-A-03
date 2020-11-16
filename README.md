@@ -9,7 +9,7 @@
 1. [Modelo das classes / Lista dos conhecimentos a serem desenvolvidos / Enigmas prévios](#marco-1)
 
 # Marco 1
-* Modelo das classes: ![Modelo das classes](ModeloClasse.png)
+* Modelo das classes: ![Modelo das classes](ModeloClasses.png)
 
 * Conhecimentos a se adquirir:
   1. Programação Concorrente
