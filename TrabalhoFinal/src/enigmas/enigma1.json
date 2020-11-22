@@ -1,0 +1,20 @@
+{
+	"id": 1,
+	"qtdUso": 0,
+	"qtdErros": 0,
+	"qtdAcertos": 0,
+	"pergunta": {
+		"expressoes": [
+			"P v Q",
+			"P",
+			"Q"
+		],
+		"resultados": [
+			"Premissa",
+			"Premissa",
+			"E v (1, 2)"
+		]
+	},
+	"resposta": "",
+	"tipo": "LogicaPredicados"
+}
