@@ -33,7 +33,7 @@ public class Modulo implements ModuleInterface {
 		if (enigma == null) {
 			throw new IllegalArgumentException("Enigma invalido");
 		}
-		this.enigmas.put(enigma.getId(), enigma);
+		this.enigmas.put((int)enigma.getId(), enigma);
 	}
 
 	public Enigma getEnigmaAtivo() {
@@ -69,7 +69,7 @@ public class Modulo implements ModuleInterface {
 	public int getExecutions(int enigma) {
 		Enigma enigmaEncontrado = this.getEnigma(enigma);
 		if (enigmaEncontrado != null) {
-			return enigmaEncontrado.getQtdUso();
+			return (int)enigmaEncontrado.getQtdUso();
 		}
 		return 0;
 	}
@@ -87,7 +87,7 @@ public class Modulo implements ModuleInterface {
 	public int getRightAnswers(int enigma) {
 		Enigma enigmaEncontrado = this.getEnigma(enigma);
 		if (enigmaEncontrado != null) {
-			return enigmaEncontrado.getQtdAcertos();
+			return (int)enigmaEncontrado.getQtdAcertos();
 		}
 		return 0;
 	}
@@ -96,7 +96,7 @@ public class Modulo implements ModuleInterface {
 	public int getWrongAnswers(int enigma) {
 		Enigma enigmaEncontrado = this.getEnigma(enigma);
 		if (enigmaEncontrado != null) {
-			return enigmaEncontrado.getQtdErros();
+			return (int)enigmaEncontrado.getQtdErros();
 		}
 		return 0;
 	}

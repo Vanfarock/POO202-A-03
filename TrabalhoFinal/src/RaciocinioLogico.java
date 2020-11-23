@@ -30,32 +30,34 @@ public class RaciocinioLogico extends Enigma {
 	public void carregarInformacoes() {
 		String filePath = new File("").getAbsolutePath().concat(this.getNomeArquivo());
 		JSONParser parser = new JSONParser();
-	      try {
-	         Object obj = parser.parse(new FileReader(filePath));
-	         JSONObject enigma = (JSONObject)obj;
-	         
-	         long id = (long)enigma.get("id");
-	         JSONObject pergunta = (JSONObject)enigma.get("pergunta");
-	         JSONArray pessoasJson = (JSONArray)pergunta.get("pessoas");
-	         JSONObject barcoJson = (JSONObject)pergunta.get("barco");
-	         
-	         ArrayList<Person> pessoas = new ArrayList<>();
-	         int starting_y = 25;
-	         int increment_y = 25;
-	         for (JSONObject pessoa : (List<JSONObject>)pessoasJson) {
-	        	 pessoas.add(new Person(starting_y, Anchor.TopLeft, 25, 25,
-	        			 				(String)pessoa.get("legenda"),
-	        			 				(Long)pessoa.get("peso")));
-	        	 starting_y += increment_y;
-	         }
-	         Boat barco = new Boat(new Point(50, 150), Anchor.TopLeft, 100, 25,
-	        		 			  (String)barcoJson.get("legenda"),
-	        		 			  (Long)barcoJson.get("cargaMaxima"));
-	         
-	         RaciocinioLogicoTask task = new RaciocinioLogicoTask(pessoas, barco);
-	         this.setTask(task);
+		try {
+			Object obj = parser.parse(new FileReader(filePath));
+			JSONObject enigma = (JSONObject)obj;
+			
+			long id = (long)enigma.get("id");
+			this.setId(id);
+			 
+			JSONObject pergunta = (JSONObject)enigma.get("pergunta");
+			JSONArray pessoasJson = (JSONArray)pergunta.get("pessoas");
+			JSONObject barcoJson = (JSONObject)pergunta.get("barco");
+			 
+			ArrayList<Person> pessoas = new ArrayList<>();
+			int starting_y = 25;
+			int increment_y = 25;
+			for (JSONObject pessoa : (List<JSONObject>)pessoasJson) {
+				pessoas.add(new Person(starting_y, Anchor.TopLeft, 25, 25,
+									  (String)pessoa.get("legenda"),
+									  (long)pessoa.get("peso")));
+				starting_y += increment_y;
+			}
+			Boat barco = new Boat(new Point(50, 150), Anchor.TopLeft, 100, 25,
+								 (String)barcoJson.get("legenda"),
+								 (long)barcoJson.get("cargaMaxima"));
+			
+			RaciocinioLogicoTask task = new RaciocinioLogicoTask(pessoas, barco);
+			this.setTask(task);
 	      } catch(Exception e) {
-	         e.printStackTrace();
+	        e.printStackTrace();
 	      }
 	}
 

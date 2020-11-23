@@ -7,10 +7,10 @@ import javax.swing.JPanel;
 import pergunta.Task;
 
 public abstract class Enigma {
-	private int qtdUso;
-	private int qtdErros;
-	private int qtdAcertos;
-	private int id;
+	private long qtdUso;
+	private long qtdErros;
+	private long qtdAcertos;
+	private long id;
 	private String nomeArquivo;
 	private String desafio;
 	private String solucao;
@@ -22,7 +22,7 @@ public abstract class Enigma {
 		this.carregarInformacoes();
 	}
 
-	public int getQtdUso() {
+	public long getQtdUso() {
 		return qtdUso;
 	}
 
@@ -30,7 +30,7 @@ public abstract class Enigma {
 		this.qtdUso++;
 	}
 
-	public int getQtdErros() {
+	public long getQtdErros() {
 		return qtdErros;
 	}
 
@@ -38,7 +38,7 @@ public abstract class Enigma {
 		this.qtdErros++;
 	}
 
-	public int getQtdAcertos() {
+	public long getQtdAcertos() {
 		return qtdAcertos;
 	}
 
@@ -46,11 +46,11 @@ public abstract class Enigma {
 		this.qtdAcertos++;
 	}
 
-	public int getId() {
+	public long getId() {
 		return id;
 	}
 
-	private void setId(int id) {
+	protected void setId(long id) {
 		if (id < 0) {
 			throw new IllegalArgumentException("Id de enigma invalido");
 		}
@@ -98,15 +98,15 @@ public abstract class Enigma {
 		this.resolvido = resolvido;
 	}
 
-	public void setQtdUso(int qtdUso) {
+	public void setQtdUso(long qtdUso) {
 		this.qtdUso = qtdUso;
 	}
 
-	public void setQtdErros(int qtdErros) {
+	public void setQtdErros(long qtdErros) {
 		this.qtdErros = qtdErros;
 	}
 
-	public void setQtdAcertos(int qtdAcertos) {
+	public void setQtdAcertos(long qtdAcertos) {
 		this.qtdAcertos = qtdAcertos;
 	}
 
