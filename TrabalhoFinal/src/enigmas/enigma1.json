@@ -1,24 +1,27 @@
 {
-	"id": 1,
+	"tipo":"Raciocinio",
 	"pergunta": {
 		"pessoas": [
 			{
-				"peso": 60,
-				"legenda": "60"
+				"legenda":"60",
+				"peso":60
 			},
 			{
-				"peso": 65,
-				"legenda": "65"
+				"legenda": "65",
+				"peso": 65
 			},
 			{
-				"peso": 80,
-				"legenda": "80"
+				"legenda":"80",
+				"peso": 80
 			}
 		],
 		"barco": {
-			"cargaMaxima": 130,
-			"legenda": "130"
+			"legenda": "130",
+			"cargaMaxima": 130
 		}
 	},
-	"tipo": "Raciocinio"
+	"qtdErros": 0,
+	"qtdUso": 0,
+	"qtdAcertos": 0,
+	"id":1
 }

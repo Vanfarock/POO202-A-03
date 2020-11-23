@@ -32,12 +32,13 @@ public class RaciocinioLogico extends Enigma {
 		JSONParser parser = new JSONParser();
 		try {
 			Object obj = parser.parse(new FileReader(filePath));
-			JSONObject enigma = (JSONObject)obj;
+			JSONObject config = (JSONObject)obj;
+			this.setConfig(config);
 			
-			long id = (long)enigma.get("id");
+			long id = (long)config.get("id");
 			this.setId(id);
 			 
-			JSONObject pergunta = (JSONObject)enigma.get("pergunta");
+			JSONObject pergunta = (JSONObject)config.get("pergunta");
 			JSONArray pessoasJson = (JSONArray)pergunta.get("pessoas");
 			JSONObject barcoJson = (JSONObject)pergunta.get("barco");
 			 
@@ -56,6 +57,9 @@ public class RaciocinioLogico extends Enigma {
 			
 			RaciocinioLogicoTask task = new RaciocinioLogicoTask(pessoas, barco);
 			this.setTask(task);
+			
+//			this.addErro();
+			this.salvarInformacoes();
 	      } catch(Exception e) {
 	        e.printStackTrace();
 	      }
@@ -63,12 +67,22 @@ public class RaciocinioLogico extends Enigma {
 
 	@Override
 	public void salvarInformacoes() throws IOException {
-		JSONObject jsonObject = new JSONObject();
-
-		FileWriter writeFile = new FileWriter(this.getNomeArquivo());
+		String filePath = new File("").getAbsolutePath().concat(this.getNomeArquivo());
+		FileWriter writeFile = new FileWriter(filePath);
 		
 		try {
-			writeFile.write(jsonObject.toJSONString());
+			JSONObject config = this.getConfig();
+
+			config.remove("qtdErros");
+			config.put("qtdErros", this.getQtdErros());
+			
+			config.remove("qtdUso");
+			config.put("qtdUso", this.getQtdErros());
+			
+			config.remove("qtdAcertos");
+			config.put("qtdAcertos", this.getQtdAcertos());
+			
+			writeFile.write(config.toJSONString());
 			writeFile.close();	
 		}
 		catch(IOException e){

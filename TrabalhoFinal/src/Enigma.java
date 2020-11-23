@@ -4,6 +4,8 @@ import java.io.IOException;
 
 import javax.swing.JPanel;
 
+import org.json.simple.JSONObject;
+
 import pergunta.Task;
 
 public abstract class Enigma {
@@ -16,6 +18,7 @@ public abstract class Enigma {
 	private String solucao;
 	private Boolean resolvido;
 	private Task task;
+	private JSONObject config;
 
 	public Enigma(String nomeArquivo) {
 		this.setNomeArquivo(nomeArquivo);
@@ -118,13 +121,20 @@ public abstract class Enigma {
 		this.task = task;
 	}
 
-	public JPanel mostrar() {
-		return this.getTask().show();			
+	protected JSONObject getConfig() {
+		return config;
 	}
-	
+
+	protected void setConfig(JSONObject config) {
+		this.config = config;
+	}
+
+	public JPanel mostrar() {
+		return this.getTask().show();
+	}
+
 	public abstract void carregarInformacoes();
 
 	public abstract void salvarInformacoes() throws IOException;
 
-	
 }
