@@ -1,0 +1,13 @@
+{
+	"id": 1,
+	"pergunta": {
+		"pessoas": [
+			60,
+			65,
+			80
+		],
+		"cargaMaxima": 130
+	},
+	"resposta": "",
+	"tipo": "Raciocinio"
+}
