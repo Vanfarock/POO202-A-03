@@ -27,10 +27,10 @@ Implementação do jogo **Keep talking and nobody explodes**, onde os desafios d
 # Marco 2
 **Enigmas:**
 * Raciocinío lógico:
-  ![Modelo de enigma de raciocínio lógico](ModeloEnigmaRaciocinioLogico.png)
+  * ![Modelo de enigma de raciocínio lógico](ModeloEnigmaRaciocinioLogico.png)
   * Três pessoas com 60kg, 65kg e 80kg querem atravessar um rio. Entretanto o barco suporta no máximo 130kg. Atravesse o rio de modo que o barco não afunde.
 * Lógica:
-  ![Modelo de enigma de lógica](ModeloEnigmaLogica.png)
+  * ![Modelo de enigma de lógica](ModeloEnigmaLogica.png)
 
 # Marco 3
 **TODO**
