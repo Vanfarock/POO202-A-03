@@ -25,7 +25,9 @@ Implementação do jogo **Keep talking and nobody explodes**, onde os desafios d
   * Lógica proposicional: Iremos desenvolver uma questão onde o usuário deverá resolver o enigma com pequenas pequenas respostas em sequência, onde no final irá formar a resposta para a questão.
 
 # Marco 2
-**TODO**
+**Enigmas:**
+* Raciocinío lógico:
+  * Três pessoas com 60kg, 65kg e 80kg querem atravessar um rio. Entretanto o barco suporta no máximo 130kg. Atravesse o rio de modo que o barco não afunde.
 
 # Marco 3
 **TODO**
