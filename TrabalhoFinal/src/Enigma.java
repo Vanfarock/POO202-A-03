@@ -1,6 +1,10 @@
+
 import java.io.FileNotFoundException;
+import java.io.IOException;
 
 import javax.swing.JPanel;
+
+import pergunta.Task;
 
 public abstract class Enigma {
 	private int qtdUso;
@@ -11,6 +15,7 @@ public abstract class Enigma {
 	private String desafio;
 	private String solucao;
 	private Boolean resolvido;
+	private Task task;
 
 	public Enigma(String nomeArquivo) {
 		this.setNomeArquivo(nomeArquivo);
@@ -105,9 +110,21 @@ public abstract class Enigma {
 		this.qtdAcertos = qtdAcertos;
 	}
 
+	public Task getTask() {
+		return task;
+	}
+
+	public void setTask(Task task) {
+		this.task = task;
+	}
+
+	public JPanel mostrar() {
+		return this.getTask().show();			
+	}
+	
 	public abstract void carregarInformacoes();
 
-	public abstract void salvarInformacoes();
+	public abstract void salvarInformacoes() throws IOException;
 
-	public abstract JPanel mostrar();
+	
 }

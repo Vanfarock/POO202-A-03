@@ -1,4 +1,5 @@
 
+
 import java.util.HashMap;
 
 import javax.swing.JPanel;
@@ -107,11 +108,6 @@ public class Modulo implements ModuleInterface {
 			estaDefusado = estaDefusado && enigma.getResolvido();
 		}
 		return estaDefusado;
-//		Enigma enigma = this.getEnigmaAtivo();
-//		if (enigma != null) {
-//			return enigma.getResolvido();
-//		}
-//		return false;
 	}
 
 	private Enigma getEnigma(int enigma) {

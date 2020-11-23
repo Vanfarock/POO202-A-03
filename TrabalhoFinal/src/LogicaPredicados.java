@@ -1,4 +1,5 @@
 
+
 import javax.swing.JPanel;
 
 public class LogicaPredicados extends Enigma {

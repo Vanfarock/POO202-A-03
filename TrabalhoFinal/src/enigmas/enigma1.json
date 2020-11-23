@@ -2,12 +2,23 @@
 	"id": 1,
 	"pergunta": {
 		"pessoas": [
-			60,
-			65,
-			80
+			{
+				"peso": 60,
+				"legenda": "60"
+			},
+			{
+				"peso": 65,
+				"legenda": "65"
+			},
+			{
+				"peso": 80,
+				"legenda": "80"
+			}
 		],
-		"cargaMaxima": 130
+		"barco": {
+			"cargaMaxima": 130,
+			"legenda": "130"
+		}
 	},
-	"resposta": "",
 	"tipo": "Raciocinio"
 }
