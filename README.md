@@ -16,9 +16,8 @@ Implementação do jogo **Keep talking and nobody explodes**, onde os desafios d
 * Modelo das classes: ![Modelo das classes](ModeloClasses.png)
 
 * Conhecimentos a se adquirir:
-  1. Programação Concorrente
-  2. Biblioteca gráfica 2D
-  3. Ler e escrever em arquivos
+  1. Biblioteca gráfica 2D
+  2. Ler e escrever em arquivos
 
 * Enigmas prévios:
   * Raciocínio lógico: Iremos desenvolver uma questão onde o usuário deverá resolver o enigma com base em interruptores, e no final compararemos o progresso alcançado pelo usuário com as respostas da questão.
