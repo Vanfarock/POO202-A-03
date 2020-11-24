@@ -57,9 +57,6 @@ public class RaciocinioLogico extends Enigma {
 			
 			RaciocinioLogicoTask task = new RaciocinioLogicoTask(pessoas, barco);
 			this.setTask(task);
-			
-//			this.addErro();
-			this.salvarInformacoes();
 	      } catch(Exception e) {
 	        e.printStackTrace();
 	      }

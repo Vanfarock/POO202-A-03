@@ -17,9 +17,9 @@ public class Application extends JFrame {
 	}
 	
     public static void main(String[] args) {
-    	RaciocinioLogico rl = new RaciocinioLogico("\\src\\enigmas\\enigma1.json");
-    	rl.carregarInformacoes();
-    	new Application(rl.mostrar());
+    	LogicaProposicional lp = new LogicaProposicional("\\src\\enigmas\\enigma2.json");
+    	lp.carregarInformacoes();
+    	new Application(lp.mostrar());
     }
     
 }

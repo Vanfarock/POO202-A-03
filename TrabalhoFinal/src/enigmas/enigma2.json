@@ -4,13 +4,21 @@
 		"expressoes": [
 			"P v Q",
 			"P",
-			"Q"
+			"Q",
+			"1",
+			"2",
+			"3",
+			"4"
 		],
 		"resultados": [
 			"Premissa",
 			"Premissa",
-			"E v (1, 2)"
+			"E v (1, 2)",
+			"Testes1",
+			"Testes2",
+			"Testes3",
+			"Testes4"
 		]
 	},
-	"resposta": "bla",
-	"tipo": "Raciocinio"
+	"tipo": "LogicaProposicional"
+}

@@ -2,7 +2,7 @@
 <classpath>
 	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="lib" path="C:/Users/vinic/Desktop/POO.20-2-NOT-A/POO202-A-Bomba/POO202-A.jar"/>
-	<classpathentry kind="lib" path="C:/Users/vinic/Downloads/json-simple-1.1.1.jar"/>
+	<classpathentry kind="lib" path="libs/json-simple-1.1.1.jar"/>
+	<classpathentry kind="lib" path="libs/POO202-A.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
