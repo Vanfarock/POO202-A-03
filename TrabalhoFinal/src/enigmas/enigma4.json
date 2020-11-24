@@ -8,6 +8,8 @@
 		],
 		"cargaMaxima": 130
 	},
-	"resposta": "",
-	"tipo": "Raciocinio"
+	"tipo": "Raciocinio",
+	"qtdErros": 0,
+	"qtdUso": 0,
+	"qtdAcertos": 0
 }
