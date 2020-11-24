@@ -1,0 +1,18 @@
+{​​
+"tipo": "Proposicional",
+"pergunta": {​​
+"resultados": [
+"Premissa",
+"Premissa",
+"E v (1, 2)"
+],
+"expressoes": [
+"P v Q",
+"P", "Q"
+]
+}​​,
+"qtdAcertos": 2,
+"qtdUso": 0,
+"qtdErros": 0,
+"id": 2
+}​​
