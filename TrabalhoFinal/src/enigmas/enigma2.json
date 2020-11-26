@@ -1,5 +1,4 @@
 {
-	"id": 2,
 	"pergunta": {
 		"expressoes": [
 			"P v Q",
@@ -13,12 +12,14 @@
 		"resultados": [
 			"Premissa",
 			"Premissa",
-			"E v (1, 2)",
-			"Testes1",
-			"Testes2",
-			"Testes3",
-			"Testes4"
+			"1",
+			"      Hipótese",
+			"2",
+			"3",
+			"4"
 		]
 	},
-	"tipo": "LogicaProposicional"
+	"qtdErros": 0,
+	"qtdUso": 0,
+	"qtdAcertos": 0
 }

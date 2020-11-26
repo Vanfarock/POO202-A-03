@@ -1,58 +1,49 @@
 
+
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 
 import javax.swing.JPanel;
 
 import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 
 import pergunta.Task;
 
 public abstract class Enigma {
-	private long qtdUso;
-	private long qtdErros;
-	private long qtdAcertos;
-	private long id;
+
+	private int id;
 	private String nomeArquivo;
 	private String desafio;
 	private String solucao;
 	private Boolean resolvido;
 	private Task task;
-	private JSONObject config;
 
-	public Enigma(String nomeArquivo) {
+	private InformacaoEstatistica infoEstatistica;
+
+	public Enigma(int id, String nomeArquivo) {
+		this.setId(id);
 		this.setNomeArquivo(nomeArquivo);
+		this.infoEstatistica = new InformacaoEstatistica();
 		this.carregarInformacoes();
 	}
 
-	public long getQtdUso() {
-		return qtdUso;
+	public InformacaoEstatistica getInfoEstatistica() {
+		return infoEstatistica;
 	}
 
-	public void addUso() {
-		this.qtdUso++;
+	public void setInfoEstatistica(InformacaoEstatistica infoEstatistica) {
+		this.infoEstatistica = infoEstatistica;
 	}
 
-	public long getQtdErros() {
-		return qtdErros;
-	}
-
-	public void addErro() {
-		this.qtdErros++;
-	}
-
-	public long getQtdAcertos() {
-		return qtdAcertos;
-	}
-
-	public void addAcerto() {
-		this.qtdAcertos++;
-	}
-
-	public long getId() {
+	public int getId() {
 		return id;
 	}
 
-	protected void setId(long id) {
+	protected void setId(int id) {
 		if (id < 0) {
 			throw new IllegalArgumentException("Id de enigma invalido");
 		}
@@ -100,16 +91,40 @@ public abstract class Enigma {
 		this.resolvido = resolvido;
 	}
 
-	public void setQtdUso(long qtdUso) {
-		this.qtdUso = qtdUso;
+	public void setQtdUso(int qtdUsos) {
+		this.getInfoEstatistica().setQtdUsos(qtdUsos);
 	}
 
-	public void setQtdErros(long qtdErros) {
-		this.qtdErros = qtdErros;
+	public void addUso() {
+		this.getInfoEstatistica().addUso();
 	}
 
-	public void setQtdAcertos(long qtdAcertos) {
-		this.qtdAcertos = qtdAcertos;
+	public int getQtdUso() {
+		return getInfoEstatistica().getQtdUsos();
+	}
+
+	public void setQtdErros(int qtdErros) {
+		this.getInfoEstatistica().setQtdErros(qtdErros);
+	}
+
+	public void addErro() {
+		this.getInfoEstatistica().addErro();
+	}
+
+	public int getQtdErros() {
+		return getInfoEstatistica().getQtdErros();
+	}
+
+	public void setQtdAcertos(int qtdAcertos) {
+		this.getInfoEstatistica().setQtdAcertos(qtdAcertos);
+	}
+
+	public void addAcerto() {
+		this.getInfoEstatistica().addAcerto();
+	}
+
+	public int getQtdAcertos() {
+		return getInfoEstatistica().getQtdAcertos();
 	}
 
 	public Task getTask() {
@@ -120,20 +135,50 @@ public abstract class Enigma {
 		this.task = task;
 	}
 
-	protected JSONObject getConfig() {
-		return config;
-	}
-
-	protected void setConfig(JSONObject config) {
-		this.config = config;
-	}
-
 	public JPanel mostrar() {
 		return this.getTask().show();
 	}
 
-	public abstract void carregarInformacoes();
+	public void carregarInformacoes() {
+		String filePath = new File("").getAbsolutePath().concat(this.getNomeArquivo());
+		JSONParser parser = new JSONParser();
+		try {
+			Object obj = parser.parse(new FileReader(filePath));
+			JSONObject config = (JSONObject) obj;
+			
+			int erros = ((Long) config.get("qtdErros")).intValue();
+			this.setQtdErros(erros);
 
-	public abstract void salvarInformacoes() throws IOException;
+			int acertos = ((Long) config.get("qtdAcertos")).intValue();
+			this.setQtdAcertos(acertos);
 
+			int usos = ((Long) config.get("qtdUso")).intValue();
+			this.setQtdUso(usos);
+
+			inicializarTask(config);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	@SuppressWarnings("unchecked")
+	public void salvarInformacoes() throws IOException, ParseException {
+		String filePath = new File("").getAbsolutePath().concat(this.getNomeArquivo());
+		JSONParser parser = new JSONParser();
+		try {
+			Object obj = parser.parse(new FileReader(filePath));
+			JSONObject config = (JSONObject) obj;
+			config.put("qtdErros", this.getQtdErros());
+			config.put("qtdAcertos", this.getQtdAcertos());
+			config.put("qtdUsos", this.getQtdUso());
+
+			try (FileWriter writeFile = new FileWriter(filePath)) {
+				writeFile.write(config.toString());
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	protected abstract void inicializarTask(JSONObject config);
 }

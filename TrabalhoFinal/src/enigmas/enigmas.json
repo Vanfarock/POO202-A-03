@@ -1,0 +1,19 @@
+{
+	"enigmas": [
+		{
+			"id": 1,
+			"arquivo": "enigma1.json",
+			"tipo":"Raciocinio"
+		},
+		{
+			"id": 2,
+			"arquivo": "enigma2.json",
+			"tipo":"LogicaProposicional"
+		},
+		{
+			"id": 3,
+			"arquivo": "enigma3.json",
+			"tipo":"Raciocinio"
+		}
+	]
+}

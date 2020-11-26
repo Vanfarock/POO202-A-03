@@ -1,5 +1,4 @@
 {
-	"tipo":"Raciocinio",
 	"pergunta": {
 		"pessoas": [
 			{
@@ -22,6 +21,5 @@
 	},
 	"qtdErros": 0,
 	"qtdUso": 0,
-	"qtdAcertos": 0,
-	"id":1
+	"qtdAcertos": 0
 }

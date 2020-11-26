@@ -1,30 +1,17 @@
 
 
-import javax.swing.JPanel;
+import org.json.simple.JSONObject;
 
 public class LogicaPredicados extends Enigma {
 
-	public LogicaPredicados(String nomeArquivo) {
-		super(nomeArquivo);
+	public LogicaPredicados(int id, String nomeArquivo) {
+		super(id, nomeArquivo);
 		// TODO Auto-generated constructor stub
 	}
 
 	@Override
-	public JPanel mostrar() {
-		return null;
-		// TODO Auto-generated method stub
-	}
-
-	@Override
-	public void carregarInformacoes() {
+	protected void inicializarTask(JSONObject config) {
 		// TODO Auto-generated method stub
 		
 	}
-
-	@Override
-	public void salvarInformacoes() {
-		// TODO Auto-generated method stub
-		
-	}
-
 }

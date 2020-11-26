@@ -7,8 +7,8 @@ import java.awt.Point;
 public class Text extends DrawableObject {
 	private String text;
 
-	public Text(Point pos, Anchor anchor, String text) {
-		super(pos, anchor, 0, 0);
+	public Text(Point pos, String text) {
+		super(pos, 0, 0);
 		this.setText(text);
 	}
 

@@ -1,27 +1,34 @@
 
-
+import java.io.File;
+import java.io.FileReader;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import javax.swing.JPanel;
+
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
 
 public class Modulo implements ModuleInterface {
 	private BombInterface bomb;
 	private HashMap<Integer, Enigma> enigmas;
 	private Enigma enigmaAtivo;
-	private int qtdAtivacoes;
+	private InformacaoEstatistica infoEstatistica;
+
+	private final String RELATIVE_PATH = "\\src\\enigmas\\";
+	private final String RIDDLES_FILENAME = "enigmas.json";
 
 	public Modulo() {
 		this.enigmas = this.carregarEnigmas();
+		this.infoEstatistica = new InformacaoEstatistica();
 	}
-	
+
 	public BombInterface getBomb() {
 		return bomb;
 	}
 
 	public void setBomb(BombInterface bomb) {
-		if (bomb == null) {
-			throw new IllegalArgumentException("Bomba invalida");
-		}
 		this.bomb = bomb;
 	}
 
@@ -30,10 +37,9 @@ public class Modulo implements ModuleInterface {
 	}
 
 	private void addEnigma(Enigma enigma) {
-		if (enigma == null) {
-			throw new IllegalArgumentException("Enigma invalido");
+		if (enigma != null) {
+			this.enigmas.put((int) enigma.getId(), enigma);
 		}
-		this.enigmas.put((int)enigma.getId(), enigma);
 	}
 
 	public Enigma getEnigmaAtivo() {
@@ -41,18 +47,17 @@ public class Modulo implements ModuleInterface {
 	}
 
 	private void setEnigmaAtivo(Enigma enigmaAtivo) {
-		if (enigmaAtivo == null) {
-			throw new IllegalArgumentException("Enigma ativo invalido");
+		if (enigmaAtivo != null) {
+			this.enigmaAtivo = enigmaAtivo;
 		}
-		this.enigmaAtivo = enigmaAtivo;
 	}
 
-	public int getQtdAtivacoes() {
-		return qtdAtivacoes;
+	public InformacaoEstatistica getInfoEstatistica() {
+		return infoEstatistica;
 	}
 
-	public void setQtdAtivacoes(int qtdAtivacoes) {
-		this.qtdAtivacoes = qtdAtivacoes;
+	public void setInfoEstatistica(InformacaoEstatistica infoEstatistica) {
+		this.infoEstatistica = infoEstatistica;
 	}
 
 	@Override
@@ -62,14 +67,14 @@ public class Modulo implements ModuleInterface {
 
 	@Override
 	public int getActivations() {
-		return this.getQtdAtivacoes();
+		return this.getInfoEstatistica().getQtdUsos();
 	}
 
 	@Override
 	public int getExecutions(int enigma) {
 		Enigma enigmaEncontrado = this.getEnigma(enigma);
 		if (enigmaEncontrado != null) {
-			return (int)enigmaEncontrado.getQtdUso();
+			return enigmaEncontrado.getQtdUso();
 		}
 		return 0;
 	}
@@ -87,7 +92,7 @@ public class Modulo implements ModuleInterface {
 	public int getRightAnswers(int enigma) {
 		Enigma enigmaEncontrado = this.getEnigma(enigma);
 		if (enigmaEncontrado != null) {
-			return (int)enigmaEncontrado.getQtdAcertos();
+			return enigmaEncontrado.getQtdAcertos();
 		}
 		return 0;
 	}
@@ -96,16 +101,16 @@ public class Modulo implements ModuleInterface {
 	public int getWrongAnswers(int enigma) {
 		Enigma enigmaEncontrado = this.getEnigma(enigma);
 		if (enigmaEncontrado != null) {
-			return (int)enigmaEncontrado.getQtdErros();
+			return (int) enigmaEncontrado.getQtdErros();
 		}
 		return 0;
 	}
 
 	@Override
 	public boolean isDefused() {
-		boolean estaDefusado = true;
-		for (Enigma enigma : this.getEnigmas().values()) {
-			estaDefusado = estaDefusado && enigma.getResolvido();
+		boolean estaDefusado = false;
+		if (this.getEnigmaAtivo() != null) {
+			estaDefusado = this.getEnigmaAtivo().getResolvido();
 		}
 		return estaDefusado;
 	}
@@ -113,10 +118,41 @@ public class Modulo implements ModuleInterface {
 	private Enigma getEnigma(int enigma) {
 		return this.getEnigmas().get(enigma);
 	}
-	
+
+	@SuppressWarnings("unchecked")
 	private HashMap<Integer, Enigma> carregarEnigmas() {
-		// TODO
-		return null;
+		HashMap<Integer, Enigma> enigmas = new HashMap<Integer, Enigma>();
+
+		String filePath = new File("").getAbsolutePath().concat(RELATIVE_PATH + RIDDLES_FILENAME);
+		JSONParser parser = new JSONParser();
+		try {
+			Object obj = parser.parse(new FileReader(filePath));
+			JSONObject config = (JSONObject) obj;
+			JSONArray enigmasJson = (JSONArray) config.get("enigmas");
+			int id = 1;
+			for (JSONObject enigma : (ArrayList<JSONObject>) enigmasJson) {
+				Enigma novoEnigma = null;
+				String nomeArquivo = (String) enigma.get("arquivo");
+				switch ((String) enigma.get("tipo")) {
+				case "Raciocinio":
+					novoEnigma = new RaciocinioLogico(id, RELATIVE_PATH + nomeArquivo);
+					break;
+				case "LogicaPredicados":
+					novoEnigma = new LogicaPredicados(id, RELATIVE_PATH + nomeArquivo);
+					break;
+				case "LogicaProposicional":
+					novoEnigma = new LogicaProposicional(id, RELATIVE_PATH + nomeArquivo);
+					break;
+				}
+				if (novoEnigma != null) {
+					enigmas.put(novoEnigma.getId(), novoEnigma);
+					id++;
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return enigmas;
 	}
 
 }

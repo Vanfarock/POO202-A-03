@@ -9,12 +9,12 @@ import java.util.ArrayList;
 import javax.swing.JPanel;
 
 import engine.Window;
-import engine.graphics.Anchor;
 import engine.graphics.Text;
+import pergunta.Led;
 import pergunta.Task;
 
-public class RaciocinioLogicoTask implements Task {
-	private JPanel window;
+public class RaciocinioLogicoTask extends Task {
+	
 	private ArrayList<Person> people;
 	private Boat boat;
 	private Button button;
@@ -25,16 +25,7 @@ public class RaciocinioLogicoTask implements Task {
 		this.people = people;
 		this.boat = boat;
 	}
-
-	public JPanel getWindow() {
-		return window;
-	}
-
-	private void setWindow(JPanel window) {
-		this.window = window;
-	}
-
-	@Override
+	
 	public JPanel show() {		
 		Window win = (Window)this.getWindow();
 		initializeWindowObjects(win);
@@ -43,7 +34,7 @@ public class RaciocinioLogicoTask implements Task {
 			@Override
 			public void mousePressed(MouseEvent e) {
 				for (Person person : people) {
-					if (person.mouseOver(new Point(e.getPoint()))) {
+					if (person.mouseOver(e.getPoint())) {
 						elementPressed = person;
 						elementPressed.setPos(e.getPoint());
 						win.repaint();
@@ -95,19 +86,16 @@ public class RaciocinioLogicoTask implements Task {
 	}
 
 	private void initializeWindowObjects(Window win) {
-//		people.add(new Person(25, Anchor.TopLeft, 25, 25, "60", 60));
-//		people.add(new Person(50, Anchor.TopLeft, 25, 25, "65", 65));
-//		people.add(new Person(75, Anchor.TopLeft, 25, 25, "80", 80));
-
-		button = new Button(new Point(50, 190), Anchor.TopLeft, 200, 25, "Atravessar");
-
-//		boat = new Boat(new Point(button.getPos().x, 150), Anchor.TopLeft, 100, 25, "130", 130);
+		button = new Button(new Point(50, 190), 200, 25, "Atravessar");
 		
 		for (Person person : people) {
 			win.addShape(person);			
 		}
 		win.addShape(boat);
 		win.addShape(button);
+		
+		setLed(new Led(new Point(250, 5), 30, 30, "Verificar"));
+		win.addShape(getLed());
 	}
 	
 	private boolean gameIsOver() {
@@ -120,7 +108,9 @@ public class RaciocinioLogicoTask implements Task {
 	
 	private void endGame(Window win) {
 		win.getShapes().clear();
-		win.addShape(new Text(new Point(win.getWidth() / 2, win.getHeight() / 2), Anchor.TopLeft, "Voce ganhou!"));
+		win.addShape(getLed());
+		getLed().setSolved(true);
+		this.setSolved(true);
 		win.repaint();
 	}
 }

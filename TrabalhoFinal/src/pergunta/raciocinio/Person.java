@@ -2,7 +2,6 @@ package pergunta.raciocinio;
 
 import java.awt.Point;
 
-import engine.graphics.Anchor;
 import engine.graphics.Rectangle;
 
 public class Person extends Rectangle {
@@ -12,8 +11,8 @@ public class Person extends Rectangle {
 	private final static int LEFT_SIDE_X = 15;
 	private final static int RIGHT_SIDE_X = 255;
 
-	public Person(int y, Anchor anchor, int width, int height, String text, long weight) {
-		super(new Point(LEFT_SIDE_X, y), anchor, width, height, text);
+	public Person(int y, int width, int height, String text, long weight) {
+		super(new Point(LEFT_SIDE_X, y), width, height, text);
 		this.setInitialPos(getPos());
 		this.setWeight(weight);
 		currentSide = Side.Left;

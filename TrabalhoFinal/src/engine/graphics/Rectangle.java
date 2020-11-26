@@ -6,17 +6,9 @@ import java.awt.Point;
 public class Rectangle extends DrawableObject {
 	private Text text;
 
-	public Rectangle(Point pos, Anchor anchor, int width, int height, String text) {
-		super(pos, anchor, width, height);
+	public Rectangle(Point pos, int width, int height, String text) {
+		super(pos, width, height);
 		this.setText(text);
-	}
-
-	@Override
-	public void setAnchoredPos(Point pos) {
-		super.setAnchoredPos(pos);
-		if (this.getText() != null) {
-			this.getText().setAnchoredPos(new Point(getPos().x, getPos().y + getHeight() / 2));
-		}
 	}
 	
 	@Override
@@ -32,7 +24,7 @@ public class Rectangle extends DrawableObject {
 	}
 
 	private void setText(String text) { 
-		this.text = new Text(new Point(getPos().x, getPos().y + getHeight() / 2), Anchor.Center, text);
+		this.text = new Text(new Point(getPos().x, getPos().y + getHeight() / 2), text);
 	}
 
 	@Override

@@ -1,0 +1,25 @@
+{
+	"pergunta": {
+		"pessoas": [
+			{
+				"legenda":"60",
+				"peso":60
+			},
+			{
+				"legenda": "65",
+				"peso": 65
+			},
+			{
+				"legenda":"80",
+				"peso": 80
+			}
+		],
+		"barco": {
+			"legenda": "130",
+			"cargaMaxima": 130
+		}
+	},
+	"qtdErros": 0,
+	"qtdUso": 0,
+	"qtdAcertos": 0
+}

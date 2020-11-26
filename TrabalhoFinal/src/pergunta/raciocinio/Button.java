@@ -3,13 +3,12 @@ package pergunta.raciocinio;
 import java.awt.Point;
 
 import engine.Window;
-import engine.graphics.Anchor;
 import engine.graphics.Rectangle;
 
 public class Button extends Rectangle {
 	
-	public Button(Point pos, Anchor anchor, int width, int height, String text) {
-		super(pos, anchor, width, height, text);
+	public Button(Point pos, int width, int height, String text) {
+		super(pos, width, height, text);
 	}
 	
 	public void crossRiver(Window window, Boat boat) {
