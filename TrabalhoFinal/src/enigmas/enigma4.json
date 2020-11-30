@@ -1,14 +1,28 @@
 {
-	"id": 4,
 	"pergunta": {
 		"pessoas": [
-			60,
-			65,
-			80
+			{
+				"legenda":"10",
+				"peso":10
+			},
+			{
+				"legenda": "15",
+				"peso": 15
+			},
+			{
+				"legenda":"30",
+				"peso": 30
+			},
+			{
+				"legenda":"37",
+				"peso": 37
+			}
 		],
-		"cargaMaxima": 130
+		"barco": {
+			"legenda": "43",
+			"cargaMaxima": 43
+		}
 	},
-	"tipo": "Raciocinio",
 	"qtdErros": 0,
 	"qtdUso": 0,
 	"qtdAcertos": 0
