@@ -1,4 +1,4 @@
-package pergunta.proposicional;
+package pergunta.logica;
 
 import java.awt.Point;
 

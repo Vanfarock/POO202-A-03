@@ -20,7 +20,8 @@ public class Modulo implements ModuleInterface {
 	private final String RIDDLES_FILENAME = "enigmas.json";
 
 	public Modulo() {
-		this.enigmas = this.carregarEnigmas();
+		this.enigmas = new HashMap<Integer, Enigma>(); 
+		this.carregarEnigmas();
 		this.infoEstatistica = new InformacaoEstatistica();
 	}
 
@@ -82,6 +83,7 @@ public class Modulo implements ModuleInterface {
 	@Override
 	public JPanel getModulePanel(int enigma) {
 		Enigma enigmaEncontrado = this.getEnigma(enigma);
+		this.setEnigmaAtivo(enigmaEncontrado);
 		if (enigmaEncontrado != null) {
 			return enigmaEncontrado.mostrar();
 		}
@@ -120,9 +122,7 @@ public class Modulo implements ModuleInterface {
 	}
 
 	@SuppressWarnings("unchecked")
-	private HashMap<Integer, Enigma> carregarEnigmas() {
-		HashMap<Integer, Enigma> enigmas = new HashMap<Integer, Enigma>();
-
+	private void carregarEnigmas() {
 		String filePath = new File("").getAbsolutePath().concat(RELATIVE_PATH + RIDDLES_FILENAME);
 		JSONParser parser = new JSONParser();
 		try {
@@ -145,14 +145,13 @@ public class Modulo implements ModuleInterface {
 					break;
 				}
 				if (novoEnigma != null) {
-					enigmas.put(novoEnigma.getId(), novoEnigma);
+					this.addEnigma(novoEnigma);
 					id++;
 				}
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return enigmas;
 	}
 
 }

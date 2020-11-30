@@ -1,5 +1,7 @@
 package pergunta.raciocinio;
 
+import java.awt.Color;
+import java.awt.Graphics;
 import java.awt.Point;
 
 import engine.graphics.Rectangle;
@@ -53,5 +55,11 @@ public class Person extends Rectangle {
 			this.setInitialPos(new Point(RIGHT_SIDE_X, currentInitialPos.y));
 		}
 		this.setPos(this.getInitialPos());
+	}
+	
+	@Override
+	public void draw(Graphics g) {
+		g.setColor(Color.BLACK);
+		super.draw(g);
 	}
 }

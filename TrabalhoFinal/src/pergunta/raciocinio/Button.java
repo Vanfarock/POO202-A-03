@@ -1,5 +1,7 @@
 package pergunta.raciocinio;
 
+import java.awt.Color;
+import java.awt.Graphics;
 import java.awt.Point;
 
 import engine.Window;
@@ -23,8 +25,13 @@ public class Button extends Rectangle {
 				boat.move(-crossingSpeed, 0);
 				window.repaint();
 			}			
-		}
-		Point b = new Point();
+		}		
 		boat.flipSide();
+	}
+	
+	@Override
+	public void draw(Graphics g) {
+		g.setColor(Color.BLACK);
+		super.draw(g);
 	}
 }

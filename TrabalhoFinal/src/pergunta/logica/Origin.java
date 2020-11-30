@@ -1,4 +1,4 @@
-package pergunta.proposicional;
+package pergunta.logica;
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -57,11 +57,7 @@ public class Origin extends Rectangle {
 
 	@Override
 	public void draw(Graphics g) {
-		if (isMovable()) {
-			g.setColor(new Color(50, 120, 50));
-		} else {
-			g.setColor(Color.BLACK);
-		}
+		g.setColor(new Color(50, 120, 50));
 		super.draw(g);
 	}
 }

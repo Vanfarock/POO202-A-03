@@ -1,4 +1,4 @@
-package pergunta.raciocinio;
+package pergunta.logica;
 
 import java.awt.Point;
 import java.awt.event.MouseAdapter;
@@ -12,21 +12,20 @@ import engine.Window;
 import pergunta.Led;
 import pergunta.Task;
 
-public class RaciocinioLogicoTask extends Task {
-	
-	private ArrayList<Person> people;
-	private Boat boat;
+public class LogicaTask extends Task {
+	private ArrayList<Expression> expressions;
+	private ArrayList<Origin> origins;
+	private Origin elementPressed;
 	private Button button;
-	private Person elementPressed;
-
-	public RaciocinioLogicoTask(ArrayList<String> questionLines, ArrayList<Person> people, Boat boat) {
+	
+	public LogicaTask(ArrayList<String> questionLines, ArrayList<Expression> expressions, ArrayList<Origin> origins) {
 		super(questionLines);
 		this.setWindow(new Window());
-		this.people = people;
-		this.boat = boat;
-	}
+		this.expressions = expressions;
+		this.origins = origins;
+	}	
 	
-	public JPanel show() {	
+	public JPanel show() {		
 		Window win = (Window)this.getWindow();
 		
 		if (getQuestionWasPassed()) {
@@ -35,20 +34,22 @@ public class RaciocinioLogicoTask extends Task {
 			win.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mousePressed(MouseEvent e) {
-					for (Person person : people) {
-						if (person.mouseOver(e.getPoint())) {
-							elementPressed = person;
+					if (button.mouseOver(e.getPoint())) {
+						if (button.questionIsCorrect(expressions, origins)) {
+							endGame(win);							
+						} else {
+							addErro();
+						}
+					}
+					
+					for (Origin o : origins) {
+						if (o.mouseOver(e.getPoint())) {
+							elementPressed = o;
 							elementPressed.setPos(e.getPoint());
+							win.repaint();
 							break;
 						}								
 					}
-					if (button.mouseOver(e.getPoint())) {
-						button.crossRiver(win, boat);
-						if (gameIsOver()) {
-							endGame(win);
-						}
-					}
-					win.repaint();
 				}
 			});
 			
@@ -56,18 +57,14 @@ public class RaciocinioLogicoTask extends Task {
 				@Override
 				public void mouseReleased(MouseEvent e) {
 					if (elementPressed != null) {
-						boolean overlaps = elementPressed.isOverlapping(boat);
-						boolean containsElement = boat.getPeople().contains(elementPressed);
-						if (overlaps && !containsElement) {
-							if (!boat.addPerson(elementPressed)) {
-								elementPressed.setPos(elementPressed.getInitialPos());
+						for (Origin o : origins) {
+							if (o != elementPressed && o.mouseOver(e.getPoint())) {
+								elementPressed.switchPosition(o);
+								win.repaint();
+								return;							
 							}
-						} else if (!overlaps && containsElement) {
-							boat.removePerson(elementPressed);
 						}
-						if (!overlaps) {
-							elementPressed.setPos(elementPressed.getInitialPos());
-						}
+						elementPressed.resetPos();
 						elementPressed = null;
 						win.repaint();
 					}
@@ -84,22 +81,25 @@ public class RaciocinioLogicoTask extends Task {
 				}
 			});
 		} else {
-			showQuestion(win);
+			this.showQuestion(win);
 		}
 		
 		return this.getWindow();
 	}
-
+	
 	private void initializeWindowObjects(Window win) {
 		win.getShapes().clear();
 		win.removeListeners();
 		
-		button = new Button(new Point(50, 190), 200, 25, "Atravessar");
-		
-		for (Person person : people) {
-			win.addShape(person);			
+		for (Expression e : expressions) {
+			win.addShape(e);
 		}
-		win.addShape(boat);
+		
+		for (Origin o : origins) {
+			win.addShape(o);
+		}
+		
+		button = new Button(new Point(220, 185), 60, 30, "Verificar");
 		win.addShape(button);
 		
 		setLed(new Led(new Point(250, 5), 30, 30, "Verificar"));
@@ -107,19 +107,11 @@ public class RaciocinioLogicoTask extends Task {
 		win.repaint();
 	}
 	
-	private boolean gameIsOver() {
-		boolean over = true;
-		for (Person p : people) {
-			over = over && p.getCurrentSide() == Side.Right;
-		}
-		return over;
-	}
-	
 	private void endGame(Window win) {
 		win.getShapes().clear();
 		win.addShape(getLed());
-		getLed().setSolved(true);
 		this.setSolved(true);
+		this.getLed().setSolved(true);
 		win.repaint();
 	}
 }

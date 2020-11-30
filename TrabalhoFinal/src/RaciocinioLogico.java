@@ -20,6 +20,8 @@ public class RaciocinioLogico extends Enigma {
 	@SuppressWarnings("unchecked")
 	@Override
 	protected void inicializarTask(JSONObject config) {
+		JSONArray questionLines = (JSONArray) config.get("linhasQuestao");
+		
 		JSONObject pergunta = (JSONObject) config.get("pergunta");
 		JSONArray pessoasJson = (JSONArray) pergunta.get("pessoas");
 		JSONObject barcoJson = (JSONObject) pergunta.get("barco");
@@ -36,7 +38,7 @@ public class RaciocinioLogico extends Enigma {
 		Boat barco = new Boat(new Point(50, 150), 100, 25, (String) barcoJson.get("legenda"),
 				(long) barcoJson.get("cargaMaxima"));
 
-		RaciocinioLogicoTask task = new RaciocinioLogicoTask(pessoas, barco);
+		RaciocinioLogicoTask task = new RaciocinioLogicoTask((ArrayList<String>)questionLines, pessoas, barco);
 		this.setTask(task);
 	}
 }

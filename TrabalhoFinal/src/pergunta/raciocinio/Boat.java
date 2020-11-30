@@ -1,5 +1,6 @@
 package pergunta.raciocinio;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Point;
 import java.util.ArrayList;
@@ -89,6 +90,7 @@ public class Boat extends Rectangle {
 
 	@Override
 	public void draw(Graphics g) {
+		g.setColor(Color.BLACK);
 		super.draw(g);
 	}
 }

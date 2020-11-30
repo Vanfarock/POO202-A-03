@@ -112,7 +112,7 @@ public abstract class Enigma {
 	}
 
 	public int getQtdErros() {
-		return getInfoEstatistica().getQtdErros();
+		return getInfoEstatistica().getQtdErros() + getTask().getQtdErros();
 	}
 
 	public void setQtdAcertos(int qtdAcertos) {
@@ -124,6 +124,9 @@ public abstract class Enigma {
 	}
 
 	public int getQtdAcertos() {
+		if (getTask().isSolved()) {
+			getInfoEstatistica().addAcerto();
+		}
 		return getInfoEstatistica().getQtdAcertos();
 	}
 

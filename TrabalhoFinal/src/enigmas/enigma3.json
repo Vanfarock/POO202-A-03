@@ -1,4 +1,9 @@
 {
+	"linhasQuestao": [
+		"Teste 1 2 3",
+		"Segunda linha",
+		"Terceira linha"
+	],
 	"pergunta": {
 		"pessoas": [
 			{

@@ -1,6 +1,7 @@
 package engine;
 
 import java.awt.Graphics;
+import java.awt.event.MouseListener;
 import java.util.ArrayList;
 
 import javax.swing.JPanel;
@@ -27,6 +28,12 @@ public class Window extends JPanel {
 		}
 	}
 
+	public void removeListeners() {
+		for (MouseListener mouseListener : getMouseListeners()) {
+			removeMouseListener(mouseListener);
+		}
+	}
+	
 	@Override
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
