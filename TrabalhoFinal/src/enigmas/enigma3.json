@@ -1,27 +1,31 @@
 {
 	"linhasQuestao": [
-		"Teste 1 2 3",
-		"Segunda linha",
-		"Terceira linha"
+		"Três péssoas querem atravessar um rio, cada",
+		"uma pesa 10kg, 15 kg e 37kg. O barco que",
+		"elas utilizarão para atravessar o rio possui",
+		"carga máxima de 43kg. Arraste as pessoas",
+		"no barco e clique no botão Atravessar de",
+		"uma forma que as três pessoas estejam do lado",
+		"direito do rio."
 	],
 	"pergunta": {
 		"pessoas": [
 			{
-				"legenda":"60",
-				"peso":60
+				"legenda":"10",
+				"peso":10
 			},
 			{
-				"legenda": "65",
-				"peso": 65
+				"legenda": "15",
+				"peso": 15
 			},
 			{
-				"legenda":"80",
-				"peso": 80
+				"legenda":"37",
+				"peso": 37
 			}
 		],
 		"barco": {
-			"legenda": "130",
-			"cargaMaxima": 130
+			"legenda": "43",
+			"cargaMaxima": 43
 		}
 	},
 	"qtdErros": 0,

@@ -1,8 +1,9 @@
 {
 	"linhasQuestao": [
-		"Teste 1 2 3",
-		"Segunda linha",
-		"Terceira linha"
+		"Reordene os itens da coluna da direita",
+		"de uma forma que eles condizam com a",
+		"coluna da esquerda. Para reordenar, basta",
+		"arrastá-los"
 	],
 	"pergunta": {
 		"expressoes": [

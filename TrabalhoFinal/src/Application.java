@@ -20,6 +20,7 @@ public class Application extends JFrame {
 		new Application(m.getModulePanel(1));
 		new Application(m.getModulePanel(2));
 		new Application(m.getModulePanel(3));
+		new Application(m.getModulePanel(4));
 	}
 
 }

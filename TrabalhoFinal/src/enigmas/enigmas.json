@@ -14,6 +14,11 @@
 			"id": 3,
 			"arquivo": "enigma3.json",
 			"tipo":"Raciocinio"
+		},
+		{
+			"id": 4,
+			"arquivo": "enigma4.json",
+			"tipo":"LogicaProposicional"
 		}
 	]
 }
