@@ -8,7 +8,7 @@
 		{
 			"id": 2,
 			"arquivo": "enigma2.json",
-			"tipo":"LogicaProposicional"
+			"tipo":"Logica"
 		},
 		{
 			"id": 3,
@@ -18,7 +18,7 @@
 		{
 			"id": 4,
 			"arquivo": "enigma4.json",
-			"tipo":"LogicaProposicional"
+			"tipo":"Logica"
 		}
 	]
 }

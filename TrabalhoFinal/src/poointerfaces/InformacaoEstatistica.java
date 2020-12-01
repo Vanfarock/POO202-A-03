@@ -1,3 +1,4 @@
+package poointerfaces;
 
 
 
@@ -50,6 +51,6 @@ public class InformacaoEstatistica {
 
 	public void addUso() {
 		this.qtdUsos++;
-	}
+	}	
 
 }

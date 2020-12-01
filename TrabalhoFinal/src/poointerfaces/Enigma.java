@@ -1,3 +1,4 @@
+package poointerfaces;
 
 
 import java.io.File;
@@ -21,22 +22,16 @@ public abstract class Enigma {
 	private String solucao;
 	private Boolean resolvido;
 	private Task task;
+	private Integer qtdErros;
+	private Integer qtdAcertos;
+	private Integer qtdUso;
+	private ModuloA03 moduloA03;
 
-	private InformacaoEstatistica infoEstatistica;
-
-	public Enigma(int id, String nomeArquivo) {
+	public Enigma(int id, String nomeArquivo, ModuleInterface moduloA03) {
 		this.setId(id);
 		this.setNomeArquivo(nomeArquivo);
-		this.infoEstatistica = new InformacaoEstatistica();
+		this.setModulo(moduloA03);
 		this.carregarInformacoes();
-	}
-
-	public InformacaoEstatistica getInfoEstatistica() {
-		return infoEstatistica;
-	}
-
-	public void setInfoEstatistica(InformacaoEstatistica infoEstatistica) {
-		this.infoEstatistica = infoEstatistica;
 	}
 
 	public int getId() {
@@ -48,6 +43,14 @@ public abstract class Enigma {
 			throw new IllegalArgumentException("Id de enigma invalido");
 		}
 		this.id = id;
+	}
+
+	private ModuleInterface getModulo() {
+		return moduloA03;
+	}
+
+	private void setModulo(ModuleInterface moduloA03) {
+		this.moduloA03 = (ModuloA03) moduloA03;
 	}
 
 	public String getNomeArquivo() {
@@ -92,42 +95,46 @@ public abstract class Enigma {
 	}
 
 	public void setQtdUso(int qtdUsos) {
-		this.getInfoEstatistica().setQtdUsos(qtdUsos);
+		this.qtdUso = qtdUsos;
 	}
 
-	public void addUso() {
-		this.getInfoEstatistica().addUso();
+	public void addUso() throws IOException, ParseException {
+		this.qtdUso++;
+		this.salvarInformacoes();
 	}
 
 	public int getQtdUso() {
-		return getInfoEstatistica().getQtdUsos();
+		return this.qtdUso;
 	}
 
 	public void setQtdErros(int qtdErros) {
-		this.getInfoEstatistica().setQtdErros(qtdErros);
+		this.qtdErros = qtdErros;
 	}
 
-	public void addErro() {
-		this.getInfoEstatistica().addErro();
+	public void addErro() throws IOException, ParseException {
+		this.qtdErros++;
+		this.salvarInformacoes();
+		this.moduloA03.addErro();
 	}
 
 	public int getQtdErros() {
-		return getInfoEstatistica().getQtdErros() + getTask().getQtdErros();
+		return this.qtdErros;
 	}
 
 	public void setQtdAcertos(int qtdAcertos) {
-		this.getInfoEstatistica().setQtdAcertos(qtdAcertos);
+		this.qtdErros = qtdErros;
 	}
 
-	public void addAcerto() {
-		this.getInfoEstatistica().addAcerto();
+	public void addAcerto() throws IOException, ParseException {
+		this.qtdAcertos++;
+		this.salvarInformacoes();
 	}
 
-	public int getQtdAcertos() {
+	public int getQtdAcertos() throws IOException, ParseException {
 		if (getTask().isSolved()) {
-			getInfoEstatistica().addAcerto();
+			this.addAcerto();
 		}
-		return getInfoEstatistica().getQtdAcertos();
+		return this.qtdAcertos;
 	}
 
 	public Task getTask() {
