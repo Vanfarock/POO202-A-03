@@ -4,7 +4,7 @@
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import poointerfaces.Modulo;
+import poointerfaces.ModuloA03;
 
 @SuppressWarnings("serial")
 public class Application extends JFrame {
@@ -18,7 +18,7 @@ public class Application extends JFrame {
 	}
 
 	public static void main(String[] args) {
-		Modulo m = new Modulo();
+		ModuloA03 m = new ModuloA03();
 		new Application(m.getModulePanel(1));
 		new Application(m.getModulePanel(2));
 		new Application(m.getModulePanel(3));

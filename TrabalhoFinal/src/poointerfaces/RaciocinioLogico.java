@@ -14,8 +14,8 @@ import pergunta.raciocinio.RaciocinioLogicoTask;
 
 public class RaciocinioLogico extends Enigma {
 
-	public RaciocinioLogico(int id, String nomeArquivo, Modulo modulo) {
-		super(id, nomeArquivo, modulo);
+	public RaciocinioLogico(int id, String nomeArquivo, ModuleInterface moduloA03) {
+		super(id, nomeArquivo, moduloA03);
 	}
 
 	@SuppressWarnings("unchecked")

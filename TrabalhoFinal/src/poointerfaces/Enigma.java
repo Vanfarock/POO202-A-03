@@ -25,12 +25,12 @@ public abstract class Enigma {
 	private Integer qtdErros;
 	private Integer qtdAcertos;
 	private Integer qtdUso;
-	private Modulo modulo;
+	private ModuloA03 moduloA03;
 
-	public Enigma(int id, String nomeArquivo, Modulo modulo) {
+	public Enigma(int id, String nomeArquivo, ModuleInterface moduloA03) {
 		this.setId(id);
 		this.setNomeArquivo(nomeArquivo);
-		this.setModulo(modulo);
+		this.setModulo(moduloA03);
 		this.carregarInformacoes();
 	}
 
@@ -45,12 +45,12 @@ public abstract class Enigma {
 		this.id = id;
 	}
 
-	private Modulo getModulo() {
-		return modulo;
+	private ModuleInterface getModulo() {
+		return moduloA03;
 	}
 
-	private void setModulo(Modulo modulo) {
-		this.modulo = modulo;
+	private void setModulo(ModuleInterface moduloA03) {
+		this.moduloA03 = (ModuloA03) moduloA03;
 	}
 
 	public String getNomeArquivo() {
@@ -114,7 +114,7 @@ public abstract class Enigma {
 	public void addErro() throws IOException, ParseException {
 		this.qtdErros++;
 		this.salvarInformacoes();
-		this.modulo.addErro();
+		this.moduloA03.addErro();
 	}
 
 	public int getQtdErros() {

@@ -1,4 +1,4 @@
-package poointerfaces;
+
 
 import java.io.File;
 import java.io.FileReader;
@@ -14,9 +14,13 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 import poointerfaces.BombInterface;
+import poointerfaces.Enigma;
+import poointerfaces.InformacaoEstatistica;
+import poointerfaces.Logica;
 import poointerfaces.ModuleInterface;
+import poointerfaces.RaciocinioLogico;
 
-public class Modulo implements ModuleInterface {
+public class ModuloA03 implements ModuleInterface {
 	private BombInterface bomb;
 	private HashMap<Integer, Enigma> enigmas;
 	private Enigma enigmaAtivo;
@@ -26,7 +30,7 @@ public class Modulo implements ModuleInterface {
 	private final String RELATIVE_PATH = "\\src\\enigmas\\";
 	private final String RIDDLES_FILENAME = "enigmas.json";
 
-	public Modulo() {
+	public ModuloA03() {
 		this.enigmas = new HashMap<Integer, Enigma>(); 
 		this.carregarEnigmas();
 		this.infoEstatistica = new InformacaoEstatistica();

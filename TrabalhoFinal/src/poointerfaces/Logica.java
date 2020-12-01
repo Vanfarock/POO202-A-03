@@ -16,8 +16,8 @@ import pergunta.logica.Origin;
 
 public class Logica extends Enigma {
 	
-	public Logica(int id, String nomeArquivo, Modulo modulo) {
-		super(id, nomeArquivo, modulo);
+	public Logica(int id, String nomeArquivo, ModuleInterface moduloA03) {
+		super(id, nomeArquivo, moduloA03);
 	}
 
 	@Override
