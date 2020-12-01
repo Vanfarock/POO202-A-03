@@ -4,6 +4,8 @@
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import poointerfaces.Modulo;
+
 @SuppressWarnings("serial")
 public class Application extends JFrame {
 	public Application(JPanel window) {
