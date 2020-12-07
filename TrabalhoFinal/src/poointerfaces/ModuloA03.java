@@ -13,22 +13,16 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
-import poointerfaces.BombInterface;
-import poointerfaces.ModuleInterface;
-
 public class ModuloA03 implements ModuleInterface {
 	private BombInterface bomb;
 	private HashMap<Integer, Enigma> enigmas;
 	private Enigma enigmaAtivo;
 	private InformacaoEstatistica infoEstatistica;
 
-	
-	private final String RELATIVE_PATH = "\\src\\enigmas\\";
-	private final String RIDDLES_FILENAME = "enigmas.json";
+	private final String RIDDLES_FILENAME = "\\enigmas.json";
 
 	public ModuloA03() {
 		this.enigmas = new HashMap<Integer, Enigma>(); 
-		this.carregarEnigmas();
 		this.infoEstatistica = new InformacaoEstatistica();
 	}
 
@@ -71,6 +65,7 @@ public class ModuloA03 implements ModuleInterface {
 	@Override
 	public void attach(BombInterface bomb) {
 		this.setBomb(bomb);
+		this.carregarEnigmas();
 	}
 
 	@Override
@@ -132,14 +127,18 @@ public class ModuloA03 implements ModuleInterface {
 		}
 		return estaDefusado;
 	}
-
+	
 	private Enigma getEnigma(int enigma) {
 		return this.getEnigmas().get(enigma);
 	}
-
+	
+	private String getRelativePath() {
+		return this.getBomb().getFilesPath().toString();
+	}
+	
 	@SuppressWarnings("unchecked")
 	private void carregarEnigmas() {
-		String filePath = new File("").getAbsolutePath().concat(RELATIVE_PATH + RIDDLES_FILENAME);
+		String filePath = new File("").getAbsolutePath().concat(getRelativePath()  + RIDDLES_FILENAME);
 		JSONParser parser = new JSONParser();
 		
 		try {
@@ -150,14 +149,14 @@ public class ModuloA03 implements ModuleInterface {
 			
 			for (JSONObject enigma : (ArrayList<JSONObject>) enigmasJson) {
 				Enigma novoEnigma = null;
-				String nomeArquivo = (String) enigma.get("arquivo");
+				String nomeArquivo = "\\" + (String) enigma.get("arquivo");
 				
 				switch ((String) enigma.get("tipo")) {
 				case "Raciocinio":
-					novoEnigma = new RaciocinioLogico(id, RELATIVE_PATH + nomeArquivo, this);
+					novoEnigma = new RaciocinioLogico(id, getRelativePath() + nomeArquivo, this);
 					break;
 				case "Logica":
-					novoEnigma = new Logica(id, RELATIVE_PATH + nomeArquivo, this);
+					novoEnigma = new Logica(id, getRelativePath() + nomeArquivo, this);
 					break;
 				}
 				if (novoEnigma != null) {
