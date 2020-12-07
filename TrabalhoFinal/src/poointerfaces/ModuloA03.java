@@ -3,6 +3,7 @@ package poointerfaces;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -19,8 +20,6 @@ public class ModuloA03 implements ModuleInterface {
 	private Enigma enigmaAtivo;
 	private InformacaoEstatistica infoEstatistica;
 
-	
-	private final String RELATIVE_PATH = "\\src\\enigmas\\";
 	private final String RIDDLES_FILENAME = "enigmas.json";
 
 	public ModuloA03() {
@@ -129,14 +128,18 @@ public class ModuloA03 implements ModuleInterface {
 		}
 		return estaDefusado;
 	}
-
+	
 	private Enigma getEnigma(int enigma) {
 		return this.getEnigmas().get(enigma);
 	}
-
+	
+	private String getRelativePath() {
+		return this.bomb.getFilesPath().toString();
+	}
+	
 	@SuppressWarnings("unchecked")
 	private void carregarEnigmas() {
-		String filePath = new File("").getAbsolutePath().concat(RELATIVE_PATH + RIDDLES_FILENAME);
+		String filePath = new File("").getAbsolutePath().concat(getRelativePath()  + RIDDLES_FILENAME);
 		JSONParser parser = new JSONParser();
 		
 		try {
@@ -151,10 +154,10 @@ public class ModuloA03 implements ModuleInterface {
 				
 				switch ((String) enigma.get("tipo")) {
 				case "Raciocinio":
-					novoEnigma = new RaciocinioLogico(id, RELATIVE_PATH + nomeArquivo, this);
+					novoEnigma = new RaciocinioLogico(id, getRelativePath() + nomeArquivo, this);
 					break;
 				case "Logica":
-					novoEnigma = new Logica(id, RELATIVE_PATH + nomeArquivo, this);
+					novoEnigma = new Logica(id, getRelativePath() + nomeArquivo, this);
 					break;
 				}
 				if (novoEnigma != null) {
