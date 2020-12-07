@@ -32,6 +32,13 @@ public abstract class Enigma {
 		this.setNomeArquivo(nomeArquivo);
 		this.setModulo(moduloA03);
 		this.carregarInformacoes();
+		
+		try {
+			this.addUso();
+			this.salvarInformacoes();
+		} catch (IOException | ParseException e) {
+			e.printStackTrace();
+		}
 	}
 
 	public int getId() {
@@ -122,7 +129,7 @@ public abstract class Enigma {
 	}
 
 	public void setQtdAcertos(int qtdAcertos) {
-		this.qtdErros = qtdErros;
+		this.qtdAcertos = qtdAcertos;
 	}
 
 	public void addAcerto() throws IOException, ParseException {
@@ -131,9 +138,9 @@ public abstract class Enigma {
 	}
 
 	public int getQtdAcertos() throws IOException, ParseException {
-		if (getTask().isSolved()) {
-			this.addAcerto();
-		}
+	//	if (getTask().isSolved()) {
+		//	this.addAcerto();
+	//	}
 		return this.qtdAcertos;
 	}
 
@@ -180,7 +187,7 @@ public abstract class Enigma {
 			JSONObject config = (JSONObject) obj;
 			config.put("qtdErros", this.getQtdErros());
 			config.put("qtdAcertos", this.getQtdAcertos());
-			config.put("qtdUsos", this.getQtdUso());
+			config.put("qtdUso", this.getQtdUso());
 
 			try (FileWriter writeFile = new FileWriter(filePath)) {
 				writeFile.write(config.toString());
