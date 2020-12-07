@@ -13,9 +13,6 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
-import poointerfaces.BombInterface;
-import poointerfaces.ModuleInterface;
-
 public class ModuloA03 implements ModuleInterface {
 	private BombInterface bomb;
 	private HashMap<Integer, Enigma> enigmas;
