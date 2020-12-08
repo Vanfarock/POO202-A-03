@@ -41,7 +41,7 @@ public class ModuloA03 implements ModuleInterface {
 
 	private void addEnigma(Enigma enigma) {
 		if (enigma != null) {
-			this.enigmas.put((int) enigma.getId(), enigma);
+			this.enigmas.put(enigma.getId(), enigma);
 		}
 	}
 
@@ -73,7 +73,7 @@ public class ModuloA03 implements ModuleInterface {
 
 	@Override
 	public int getActivations() {
-		return this.getInfoEstatistica().getQtdUsos();
+		return this.getInfoEstatistica().getQtdUsos() + 1;
 	}
 
 	@Override
@@ -89,6 +89,11 @@ public class ModuloA03 implements ModuleInterface {
 	public JPanel getModulePanel(int enigma) {
 		Enigma enigmaEncontrado = this.getEnigma(enigma);
 		this.setEnigmaAtivo(enigmaEncontrado);
+		try {
+			this.getEnigmaAtivo().addUso();
+		} catch (IOException | ParseException e) {
+			e.printStackTrace();
+		}
 		if (enigmaEncontrado != null) {
 			return enigmaEncontrado.mostrar();
 		}
@@ -112,7 +117,7 @@ public class ModuloA03 implements ModuleInterface {
 	public int getWrongAnswers(int enigma) {
 		Enigma enigmaEncontrado = this.getEnigma(enigma);
 		if (enigmaEncontrado != null) {
-			return (int) enigmaEncontrado.getQtdErros();
+			return enigmaEncontrado.getQtdErros();
 		}
 		return 0;
 	}
@@ -142,7 +147,6 @@ public class ModuloA03 implements ModuleInterface {
 	@SuppressWarnings("unchecked")
 	private void carregarEnigmas() {
 		String filePath = this.getRelativePath().resolve(RIDDLES_FILENAME).toString();
-		System.out.println(filePath);
 		JSONParser parser = new JSONParser();
 		
 		try {
@@ -176,7 +180,6 @@ public class ModuloA03 implements ModuleInterface {
 	
 	public List<String> prepararCaminho() {
 		String filePath = this.getRelativePath().resolve(RIDDLES_FILENAME).toString();
-		System.out.println(filePath);
 		JSONParser parser = new JSONParser();
 		
 		try {

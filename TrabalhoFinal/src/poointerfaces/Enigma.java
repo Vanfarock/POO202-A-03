@@ -30,13 +30,6 @@ public abstract class Enigma {
 		this.setNomeArquivo(nomeArquivo);
 		this.setModulo(moduloA03);
 		this.carregarInformacoes();
-		
-		try {
-			this.addUso();
-			System.out.println("DEPOIS DO ADD USO");
-		} catch (IOException | ParseException e) {
-			e.printStackTrace();
-		}
 	}
 
 	public int getId() {
