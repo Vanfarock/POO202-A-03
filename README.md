@@ -35,4 +35,4 @@ Implementação do jogo **Keep talking and nobody explodes**, onde os desafios d
 **TODO**
 
 # Marco 4
-**TODO**
+Trabalho finalizado e adicionado em pasta a parte: TrabalhoFinalizado, possui os .jar e os JSONs. 
