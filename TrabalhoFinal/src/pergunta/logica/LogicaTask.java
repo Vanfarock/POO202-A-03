@@ -40,11 +40,6 @@ public class LogicaTask extends Task {
 				public void mousePressed(MouseEvent e) {
 					if (button.mouseOver(e.getPoint())) {
 						if (button.questionIsCorrect(expressions, origins)) {
-							try {
-								enigma.addAcerto();
-							} catch (IOException | ParseException e1) {
-								e1.printStackTrace();
-							}
 							endGame(win);							
 						} else {
 							try {
@@ -125,6 +120,12 @@ public class LogicaTask extends Task {
 		win.addShape(getLed());
 		this.setSolved(true);
 		this.getLed().setSolved(true);
+		try {
+			this.enigma.addAcerto();
+			this.enigma.setResolvido(true);
+		} catch (IOException | ParseException e) {
+			e.printStackTrace();
+		}
 		win.repaint();
 	}
 }

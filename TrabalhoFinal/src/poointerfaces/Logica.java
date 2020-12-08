@@ -70,7 +70,7 @@ public class Logica extends Enigma {
 			this.setTask(task);
 			
 		} catch (Exception e) {
-			e.printStackTrace();
+			//e.printStackTrace();
 		}
 	}
 }

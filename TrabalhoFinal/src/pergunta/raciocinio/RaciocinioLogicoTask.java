@@ -126,6 +126,7 @@ public class RaciocinioLogicoTask extends Task {
 		this.setSolved(true);
 		try {
 			enigma.addAcerto();
+			enigma.setResolvido(true);
 		} catch (IOException | ParseException e) {
 			e.printStackTrace();
 		}

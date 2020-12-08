@@ -18,7 +18,7 @@ public abstract class Enigma {
 	private String nomeArquivo;
 	private String desafio;
 	private String solucao;
-	private Boolean resolvido;
+	private Boolean resolvido = false;
 	private Task task;
 	private int qtdErros;
 	private int qtdAcertos;
@@ -33,7 +33,7 @@ public abstract class Enigma {
 		
 		try {
 			this.addUso();
-			this.salvarInformacoes();
+			System.out.println("DEPOIS DO ADD USO");
 		} catch (IOException | ParseException e) {
 			e.printStackTrace();
 		}
@@ -119,6 +119,7 @@ public abstract class Enigma {
 	public void addErro() throws IOException, ParseException {
 		this.qtdErros++;
 		this.salvarInformacoes();
+		this.moduloA03.getInfoEstatistica().addErro();
 		this.moduloA03.addErro();
 	}
 
@@ -132,6 +133,7 @@ public abstract class Enigma {
 
 	public void addAcerto() throws IOException, ParseException {
 		this.qtdAcertos++;
+		this.moduloA03.getInfoEstatistica().addAcerto();
 		this.salvarInformacoes();
 	}
 

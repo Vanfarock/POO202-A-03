@@ -32,7 +32,9 @@ public class RaciocinioLogico extends Enigma {
 			ArrayList<Person> pessoas = new ArrayList<>();
 			int starting_y = 40;
 			int increment_y = 25;
+			//System.out.println(pessoasJson);
 			for (JSONObject pessoa : (List<JSONObject>) pessoasJson) {
+				System.out.println(pessoa);
 				pessoas.add(new Person(starting_y, 25, 25, (String) pessoa.get("legenda"),
 						(long) pessoa.get("peso")));
 				starting_y += increment_y;
@@ -45,7 +47,7 @@ public class RaciocinioLogico extends Enigma {
 			this.setTask(task);
 			
 		} catch (Exception e) {
-			e.printStackTrace();
+			//e.printStackTrace();
 		}
 	}
 }

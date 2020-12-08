@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import javax.swing.JPanel;
 
@@ -66,6 +67,8 @@ public class ModuloA03 implements ModuleInterface {
 	public void attach(BombInterface bomb) {
 		this.setBomb(bomb);
 		this.carregarEnigmas();
+		InformacaoEstatistica infoEstatistica2 = this.getInfoEstatistica();
+		infoEstatistica2.carregarEstatistica(prepararCaminho());
 	}
 
 	@Override
@@ -169,4 +172,36 @@ public class ModuloA03 implements ModuleInterface {
 			e.printStackTrace();
 		}
 	}
+	
+	
+	public List<String> prepararCaminho() {
+		String filePath = this.getRelativePath().resolve(RIDDLES_FILENAME).toString();
+		System.out.println(filePath);
+		JSONParser parser = new JSONParser();
+		
+		try {
+			Object obj = parser.parse(new FileReader(filePath));
+			JSONObject config = (JSONObject) obj;
+			JSONArray enigmasJson = (JSONArray) config.get("enigmas");
+			int id = 1;
+			
+			List<String> listaDeCaminhos = new ArrayList<>();
+			
+			for (JSONObject enigma : (ArrayList<JSONObject>) enigmasJson) {
+				Enigma novoEnigma = null;
+				String nomeArquivo = (String) enigma.get("arquivo");
+				String riddlePath = this.getRelativePath().resolve(nomeArquivo).toString();
+				listaDeCaminhos.add(riddlePath);
+				
+			}
+			
+			return listaDeCaminhos;
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	
 }
