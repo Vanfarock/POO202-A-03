@@ -32,7 +32,10 @@ Implementação do jogo **Keep talking and nobody explodes**, onde os desafios d
   * ![Modelo de enigma de lógica](ModeloEnigmaLogica.png)
 
 # Marco 3
-**TODO**
+**Visual dos enigmas**
+* Perguntas:
+	* ![Pergunta dos enigmas existentes](PerguntaQuestoes.png)
+  	* ![Desafios que aparecem ao clicar no botão **Ir para o Desafio**](DesafioQuestoes.png)
 
 # Marco 4
 Trabalho finalizado e adicionado em pasta a parte: TrabalhoFinalizado, possui os .jar e os JSONs. 
