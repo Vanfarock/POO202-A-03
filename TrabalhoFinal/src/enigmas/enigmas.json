@@ -13,11 +13,21 @@
 		{
 			"id": 3,
 			"arquivo": "enigma3.json",
-			"tipo":"Raciocinio"
+			"tipo":"Logica"
 		},
 		{
 			"id": 4,
 			"arquivo": "enigma4.json",
+			"tipo":"Raciocinio"
+		},
+		{
+			"id": 5,
+			"arquivo": "enigma5.json",
+			"tipo":"Logica"
+		},
+		{
+			"id": 6,
+			"arquivo": "enigma6.json",
 			"tipo":"Logica"
 		}
 	]

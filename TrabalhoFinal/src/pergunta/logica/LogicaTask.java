@@ -14,6 +14,8 @@ import org.json.simple.parser.ParseException;
 import engine.Window;
 import pergunta.Led;
 import pergunta.Task;
+import poointerfaces.Enigma;
+import poointerfaces.ModuloA03;
 
 public class LogicaTask extends Task {
 	private ArrayList<Expression> expressions;
@@ -21,8 +23,8 @@ public class LogicaTask extends Task {
 	private Origin elementPressed;
 	private Button button;
 	
-	public LogicaTask(ArrayList<String> questionLines, ArrayList<Expression> expressions, ArrayList<Origin> origins) {
-		super(questionLines);
+	public LogicaTask(ArrayList<String> questionLines, ArrayList<Expression> expressions, ArrayList<Origin> origins, Enigma enigma) {
+		super(questionLines, enigma);
 		this.setWindow(new Window());
 		this.expressions = expressions;
 		this.origins = origins;
@@ -39,6 +41,11 @@ public class LogicaTask extends Task {
 				public void mousePressed(MouseEvent e) {
 					if (button.mouseOver(e.getPoint())) {
 						if (button.questionIsCorrect(expressions, origins)) {
+							try {
+								enigma.addAcerto();
+							} catch (IOException | ParseException e1) {
+								e1.printStackTrace();
+							}
 							endGame(win);							
 						} else {
 							try {

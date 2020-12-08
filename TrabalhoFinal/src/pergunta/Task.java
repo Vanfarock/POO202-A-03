@@ -24,10 +24,19 @@ public abstract class Task {
 	protected int qtdErros;
 	protected Enigma enigma;
 
-	public Task(ArrayList<String> questionLines) {
+	public Task(ArrayList<String> questionLines, Enigma enigma) {
 		this.setQuestionLines(questionLines);
+		this.setEnigma(enigma);
 	}
 
+	private Enigma getEnigma() {
+		return enigma;
+	}
+
+	private void setEnigma(Enigma enigma) {
+		this.enigma = enigma;
+	}
+	
 	public JPanel getWindow() {
 		return window;
 	}
@@ -78,7 +87,7 @@ public abstract class Task {
 	
 	public void addErro() throws IOException, ParseException {
 		this.qtdErros++;
-		this.enigma.addErro();
+		this.getEnigma().addErro();
 	}
 
 	protected void showQuestion(Window win) {
