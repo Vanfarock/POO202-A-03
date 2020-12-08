@@ -24,8 +24,9 @@ public abstract class Task {
 	protected int qtdErros;
 	protected Enigma enigma;
 
-	public Task(ArrayList<String> questionLines) {
+	public Task(ArrayList<String> questionLines, Enigma enigma) {
 		this.setQuestionLines(questionLines);
+		this.setEnigma(enigma);
 	}
 
 	public JPanel getWindow() {
@@ -79,6 +80,14 @@ public abstract class Task {
 	public void addErro() throws IOException, ParseException {
 		this.qtdErros++;
 		this.enigma.addErro();
+	}
+	
+	private Enigma getEnigma() {
+		return enigma;
+	}
+
+	private void setEnigma(Enigma enigma) {
+		this.enigma = enigma;
 	}
 
 	protected void showQuestion(Window win) {

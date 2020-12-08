@@ -66,7 +66,7 @@ public class Logica extends Enigma {
 				starting_y += increment_y;
 			}
 			  
-			LogicaTask task = new LogicaTask((ArrayList<String>)questionLines, expressions, shuffledOrigins);
+			LogicaTask task = new LogicaTask((ArrayList<String>)questionLines, expressions, shuffledOrigins, this);
 			this.setTask(task);
 			
 		} catch (Exception e) {

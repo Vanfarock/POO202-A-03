@@ -11,6 +11,7 @@ import javax.swing.JPanel;
 import engine.Window;
 import pergunta.Led;
 import pergunta.Task;
+import poointerfaces.Enigma;
 
 public class RaciocinioLogicoTask extends Task {
 	
@@ -19,8 +20,8 @@ public class RaciocinioLogicoTask extends Task {
 	private Button button;
 	private Person elementPressed;
 
-	public RaciocinioLogicoTask(ArrayList<String> questionLines, ArrayList<Person> people, Boat boat) {
-		super(questionLines);
+	public RaciocinioLogicoTask(ArrayList<String> questionLines, ArrayList<Person> people, Boat boat, Enigma enigma) {
+		super(questionLines, enigma);
 		this.setWindow(new Window());
 		this.people = people;
 		this.boat = boat;

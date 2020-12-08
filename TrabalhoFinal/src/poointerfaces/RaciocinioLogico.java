@@ -41,7 +41,7 @@ public class RaciocinioLogico extends Enigma {
 			Boat barco = new Boat(new Point(50, 150), 100, 25, (String) barcoJson.get("legenda"),
 					(long) barcoJson.get("cargaMaxima"));
 	
-			RaciocinioLogicoTask task = new RaciocinioLogicoTask((ArrayList<String>)questionLines, pessoas, barco);
+			RaciocinioLogicoTask task = new RaciocinioLogicoTask((ArrayList<String>)questionLines, pessoas, barco, this);
 			this.setTask(task);
 			
 		} catch (Exception e) {

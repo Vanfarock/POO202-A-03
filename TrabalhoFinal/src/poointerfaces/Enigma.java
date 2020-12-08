@@ -1,7 +1,5 @@
 package poointerfaces;
 
-
-import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -22,9 +20,9 @@ public abstract class Enigma {
 	private String solucao;
 	private Boolean resolvido;
 	private Task task;
-	private Integer qtdErros;
-	private Integer qtdAcertos;
-	private Integer qtdUso;
+	private int qtdErros;
+	private int qtdAcertos;
+	private int qtdUso;
 	private ModuloA03 moduloA03;
 
 	public Enigma(int id, String nomeArquivo, ModuleInterface moduloA03) {
@@ -150,7 +148,7 @@ public abstract class Enigma {
 	}
 
 	public void carregarInformacoes() {
-		String filePath = new File("").getAbsolutePath().concat(this.getNomeArquivo());
+		String filePath = this.getNomeArquivo();
 		JSONParser parser = new JSONParser();
 		try {
 			Object obj = parser.parse(new FileReader(filePath));
@@ -173,7 +171,7 @@ public abstract class Enigma {
 	
 	@SuppressWarnings("unchecked")
 	public void salvarInformacoes() throws IOException, ParseException {
-		String filePath = new File("").getAbsolutePath().concat(this.getNomeArquivo());
+		String filePath = this.getNomeArquivo();
 		JSONParser parser = new JSONParser();
 		try {
 			Object obj = parser.parse(new FileReader(filePath));
