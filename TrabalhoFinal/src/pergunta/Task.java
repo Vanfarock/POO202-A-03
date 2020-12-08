@@ -28,7 +28,7 @@ public abstract class Task {
 		this.setQuestionLines(questionLines);
 		this.setEnigma(enigma);
 	}
-
+	
 	public JPanel getWindow() {
 		return window;
 	}
@@ -79,7 +79,7 @@ public abstract class Task {
 	
 	public void addErro() throws IOException, ParseException {
 		this.qtdErros++;
-		this.enigma.addErro();
+		this.getEnigma().addErro();
 	}
 	
 	private Enigma getEnigma() {
